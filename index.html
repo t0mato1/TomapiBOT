@@ -5,50 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TomapiBOT.使用キャラVOICEVOX</title>
     <style>
-        :root { --main: #005bac; --accent: #2ecc71; --bg: #f0f4f8; --card: #ffffff; }
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Sans", Meiryo, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        /* 基本の変数（ライトモード） */
+        :root {
+            --main: #005bac;
+            --accent: #2ecc71;
+            --bg: #f0f4f8;
+            --card: #ffffff;
+            --text: #333333;
+            --text-sub: #7f8c8d;
+            --border: #e1e8ed;
+            --header-bg: #ffffff;
+        }
+
+        /* ダークモード用の変数 */
+        [data-theme="dark"] {
+            --main: #4da3ff;
+            --accent: #2ecc71;
+            --bg: #1a1a1a;
+            --card: #2d2d2d;
+            --text: #f0f0f0;
+            --text-sub: #b0b0b0;
+            --border: #444444;
+            --header-bg: #252525;
+        }
+
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Sans", Meiryo, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: var(--text); line-height: 1.6; transition: background 0.3s, color 0.3s; }
         .container { max-width: 1100px; margin: 0 auto; }
-        header { background: var(--card); padding: 40px 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border-top: 10px solid var(--main); }
+
+        /* モード切替ボタン */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--main);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header { background: var(--header-bg); padding: 40px 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; border-top: 10px solid var(--main); }
         h1 { margin: 0; font-size: 2em; color: var(--main); }
-        .intro { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 40px; border-left: 6px solid var(--accent); }
+        .intro { background: var(--card); padding: 20px; border-radius: 10px; margin-bottom: 40px; border-left: 6px solid var(--accent); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         
         section { margin-bottom: 60px; }
         h2 { background: var(--main); color: #fff; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-bottom: 25px; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        .card { background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e1e8ed; display: flex; flex-direction: column; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: var(--main); }
-        .name { font-weight: bold; font-size: 1.1em; color: #2c3e50; margin-bottom: 8px; }
-        .license { font-size: 0.8em; color: #7f8c8d; background: #f8f9fa; padding: 4px 8px; border-radius: 4px; margin-bottom: 15px; }
+        .card { background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid var(--border); display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: var(--main); }
+        .name { font-weight: bold; font-size: 1.1em; color: var(--text); margin-bottom: 8px; }
+        .license { font-size: 0.8em; color: var(--text-sub); background: rgba(0,0,0,0.05); padding: 4px 8px; border-radius: 4px; margin-bottom: 15px; }
+        
+        [data-theme="dark"] .license { background: rgba(255,255,255,0.1); }
+
         .link { text-align: center; text-decoration: none; font-size: 0.9em; color: var(--main); border: 1px solid var(--main); padding: 8px; border-radius: 6px; transition: 0.2s; margin-top: auto; font-weight: bold;}
         .link:hover { background: var(--main); color: #fff; }
 
-        footer { text-align: center; margin-top: 100px; padding: 40px; background: #fff; border-radius: 20px 20px 0 0; color: #666; }
+        footer { text-align: center; margin-top: 100px; padding: 40px; background: var(--header-bg); border-radius: 20px 20px 0 0; color: var(--text-sub); }
 
-        /* --- ここからスマホ・タブレット対応の追加 --- */
+        /* スマホ対応 */
         @media (max-width: 768px) {
             body { padding: 10px; }
             header { padding: 25px 15px; margin-bottom: 25px; }
             h1 { font-size: 1.5em; }
-            .intro { font-size: 0.9em; padding: 15px; margin-bottom: 30px; }
-            section { margin-bottom: 40px; }
-            h2 { font-size: 1.1em; padding: 8px 15px; margin-bottom: 15px; }
-            .grid { 
-                /* スマホでは2列、小さな画面では1列に自動調整 */
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-                gap: 12px; 
-            }
-            .card { padding: 15px; }
-            .name { font-size: 0.95em; }
-            .link { font-size: 0.85em; padding: 10px 5px; } /* 指で押しやすく調整 */
+            .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+            .theme-toggle { top: 10px; right: 10px; padding: 8px 12px; font-size: 1rem; }
         }
         @media (max-width: 400px) {
-            .grid { grid-template-columns: 1fr; } /* 非常に小さい画面では1列 */
+            .grid { grid-template-columns: 1fr; }
         }
-        /* --- ここまで --- */
     </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">🌙</button>
 
 <div class="container">
     <header>
@@ -166,6 +201,29 @@
         <p>&copy; 2025 TomapiBOT. 管理室</p>
     </footer>
 </div>
+
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    
+    // 保存されたテーマを読み込み
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    root.setAttribute('data-theme', savedTheme);
+    updateToggleButton(savedTheme);
+
+    toggle.addEventListener('click', () => {
+        let currentTheme = root.getAttribute('data-theme');
+        let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme); // ブラウザに保存
+        updateToggleButton(newTheme);
+    });
+
+    function updateToggleButton(theme) {
+        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+</script>
 
 </body>
 </html>
