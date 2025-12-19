@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TomapiBOT.使用キャラVOICEVOX</title>
+    <style>
+        :root { --main: #005bac; --accent: #2ecc71; --bg: #f0f4f8; --card: #ffffff; }
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Sans", Meiryo, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { background: var(--card); padding: 40px 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; border-top: 10px solid var(--main); }
+        h1 { margin: 0; font-size: 2em; color: var(--main); }
+        .intro { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 40px; border-left: 6px solid var(--accent); }
+        
+        section { margin-bottom: 60px; }
+        h2 { background: var(--main); color: #fff; padding: 10px 20px; border-radius: 5px; display: inline-block; margin-bottom: 25px; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .card { background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e1e8ed; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: var(--main); }
+        .name { font-weight: bold; font-size: 1.1em; color: #2c3e50; margin-bottom: 8px; }
+        .license { font-size: 0.8em; color: #7f8c8d; background: #f8f9fa; padding: 4px 8px; border-radius: 4px; margin-bottom: 15px; }
+        .link { text-align: center; text-decoration: none; font-size: 0.9em; color: var(--main); border: 1px solid var(--main); padding: 8px; border-radius: 6px; transition: 0.2s; margin-top: auto; font-weight: bold;}
+        .link:hover { background: var(--main); color: #fff; }
+
+        footer { text-align: center; margin-top: 100px; padding: 40px; background: #fff; border-radius: 20px 20px 0 0; color: #666; }
+
+        /* --- ここからスマホ・タブレット対応の追加 --- */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            header { padding: 25px 15px; margin-bottom: 25px; }
+            h1 { font-size: 1.5em; }
+            .intro { font-size: 0.9em; padding: 15px; margin-bottom: 30px; }
+            section { margin-bottom: 40px; }
+            h2 { font-size: 1.1em; padding: 8px 15px; margin-bottom: 15px; }
+            .grid { 
+                /* スマホでは2列、小さな画面では1列に自動調整 */
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+                gap: 12px; 
+            }
+            .card { padding: 15px; }
+            .name { font-size: 0.95em; }
+            .link { font-size: 0.85em; padding: 10px 5px; } /* 指で押しやすく調整 */
+        }
+        @media (max-width: 400px) {
+            .grid { grid-template-columns: 1fr; } /* 非常に小さい画面では1列 */
+        }
+        /* --- ここまで --- */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>TomapiBOT<br>[VOICEVOX使用キャラ]</h1>
+        <p>ボイボ寮キャラクター プロフィール一覧</p>
+    </header>
+
+    <div class="intro">
+        当BOTで使用している <strong>VOICEVOX</strong> キャラクターの紹介ページです。<br>
+        「詳細を見る」ボタンから、各キャラクターのプロフィールや立ち絵を確認できます。
+    </div>
+
+    <section>
+        <h2>10期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">離途</span><span class="license">VOICEVOX:離途</span><a href="https://voicevox.hiroshiba.jp/dormitory/rito/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">黒沢冴白</span><span class="license">VOICEVOX:黒沢冴白</span><a href="https://voicevox.hiroshiba.jp/dormitory/kurosawa_kohaku/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">ユーレイちゃん</span><span class="license">VOICEVOX:ユーレイちゃん</span><a href="https://voicevox.hiroshiba.jp/dormitory/yureichan/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">東北ずん子</span><span class="license">VOICEVOX:東北ずん子</span><a href="https://voicevox.hiroshiba.jp/dormitory/tohoku_zunko/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">東北きりたん</span><span class="license">VOICEVOX:東北きりたん</span><a href="https://voicevox.hiroshiba.jp/dormitory/tohoku_kiritan/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">東北イタコ</span><span class="license">VOICEVOX:東北イタコ</span><a href="https://voicevox.hiroshiba.jp/dormitory/tohoku_itako/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>9期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">Voidoll</span><span class="license">VOICEVOX:Voidoll</span><a href="https://voicevox.hiroshiba.jp/dormitory/voidoll/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">ぞん子</span><span class="license">VOICEVOX:ぞん子</span><a href="https://voicevox.hiroshiba.jp/dormitory/zonko/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">中部つるぎ</span><span class="license">VOICEVOX:中部つるぎ</span><a href="https://voicevox.hiroshiba.jp/dormitory/chubu_tsurugi/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>8期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">栗田まろん</span><span class="license">VOICEVOX:栗田まろん</span><a href="https://voicevox.hiroshiba.jp/dormitory/kurita_maron/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">あいえるたん</span><span class="license">VOICEVOX:あいえるたん</span><a href="https://voicevox.hiroshiba.jp/dormitory/aierutan/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">満別花丸</span><span class="license">VOICEVOX:満別花丸</span><a href="https://voicevox.hiroshiba.jp/dormitory/manbetsu_hanamaru/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">琴詠ニア</span><span class="license">VOICEVOX:琴詠ニア</span><a href="https://voicevox.hiroshiba.jp/dormitory/kotoyomi_nia/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>7期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">†聖騎士 紅桜†</span><span class="license">VOICEVOX:紅桜</span><a href="https://voicevox.hiroshiba.jp/dormitory/horinaito_benizakura/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">雀松朱司</span><span class="license">VOICEVOX:雀松朱司</span><a href="https://voicevox.hiroshiba.jp/dormitory/wakamatsu_akashi/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">麒ヶ島宗麟</span><span class="license">VOICEVOX:麒ヶ島宗麟</span><a href="https://voicevox.hiroshiba.jp/dormitory/kigashima_sourin/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">春歌ナナ</span><span class="license">VOICEVOX:春歌ナナ</span><a href="https://voicevox.hiroshiba.jp/dormitory/haruka_nana/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">猫使アル</span><span class="license">VOICEVOX:猫使アル</span><a href="https://voicevox.hiroshiba.jp/dormitory/nekotsuka_aru/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">猫使ビィ</span><span class="license">VOICEVOX:猫使ビィ</span><a href="https://voicevox.hiroshiba.jp/dormitory/nekotsuka_bi/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">中国うさぎ</span><span class="license">VOICEVOX:中国うさぎ</span><a href="https://voicevox.hiroshiba.jp/dormitory/chugoku_usagi/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>6期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">ちび式じい</span><span class="license">VOICEVOX:ちび式じい</span><a href="https://voicevox.hiroshiba.jp/dormitory/chibishikiji/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">櫻歌ミコ</span><span class="license">VOICEVOX:櫻歌ミコ</span><a href="https://voicevox.hiroshiba.jp/dormitory/ouka_miko/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">小夜/SAYO</span><span class="license">VOICEVOX:小夜/SAYO</span><a href="https://voicevox.hiroshiba.jp/dormitory/sayo/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">ナースロボ＿タイプＴ</span><span class="license">VOICEVOX:ナースロボ</span><a href="https://voicevox.hiroshiba.jp/dormitory/nurserobo_typet/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>5期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">WhiteCUL</span><span class="license">VOICEVOX:WhiteCUL</span><a href="https://voicevox.hiroshiba.jp/dormitory/white_cul/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">後鬼</span><span class="license">VOICEVOX:後鬼</span><a href="https://voicevox.hiroshiba.jp/dormitory/goki/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">No.7</span><span class="license">VOICEVOX:No.7</span><a href="https://voicevox.hiroshiba.jp/dormitory/number_seven/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>4期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">もち子さん</span><span class="license">VOICEVOX:もち子さん</span><a href="https://voicevox.hiroshiba.jp/dormitory/mochikosan/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">剣崎雌雄</span><span class="license">VOICEVOX:剣崎雌雄</span><a href="https://voicevox.hiroshiba.jp/dormitory/kenzaki_mesuo/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>3期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">玄野武宏</span><span class="license">VOICEVOX:玄野武宏</span><a href="https://voicevox.hiroshiba.jp/dormitory/kurono_takehiro/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">白上虎太郎</span><span class="license">VOICEVOX:白上虎太郎</span><a href="https://voicevox.hiroshiba.jp/dormitory/shirakami_kotarou/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">青山龍星</span><span class="license">VOICEVOX:青山龍星</span><a href="https://voicevox.hiroshiba.jp/dormitory/aoyama_ryusei/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">冥鳴ひまり</span><span class="license">VOICEVOX:冥鳴ひまり</span><a href="https://voicevox.hiroshiba.jp/dormitory/meimei_himari/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">九州そら</span><span class="license">VOICEVOX:九州そら</span><a href="https://voicevox.hiroshiba.jp/dormitory/kyushu_sora/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>2期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">春日部つむぎ</span><span class="license">VOICEVOX:春日部つむぎ</span><a href="https://voicevox.hiroshiba.jp/dormitory/kasukabe_tsumugi/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">雨晴はう</span><span class="license">VOICEVOX:雨晴はう</span><a href="https://voicevox.hiroshiba.jp/dormitory/amehare_hau/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">波音リツ</span><span class="license">VOICEVOX:波音リツ</span><a href="https://voicevox.hiroshiba.jp/dormitory/namine_ritsu/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>1期生</h2>
+        <div class="grid">
+            <div class="card"><span class="name">四国めたん</span><span class="license">VOICEVOX:四国めたん</span><a href="https://voicevox.hiroshiba.jp/dormitory/shikoku_metan/" target="_blank" class="link">詳細を見る</a></div>
+            <div class="card"><span class="name">ずんだもん</span><span class="license">VOICEVOX:ずんだもん</span><a href="https://voicevox.hiroshiba.jp/dormitory/zundamon/" target="_blank" class="link">詳細を見る</a></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Software by <a href="https://voicevox.hiroshiba.jp/" target="_blank">VOICEVOX</a></p>
+        <p>※詳細ページから各キャラクターの利用規約もご確認いただけます。</p>
+        <p>&copy; 2025 TomapiBOT. 管理室</p>
+    </footer>
+</div>
+
+</body>
+</html>
