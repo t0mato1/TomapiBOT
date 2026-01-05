@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TomapiBOT.使用キャラVOICEVOX</title>
     <style>
-        /* 基本の変数（ライトモード） */
+        /* カラー設定（ライトモード） */
         :root {
             --main: #005bac;
             --accent: #2ecc71;
@@ -17,7 +17,7 @@
             --header-bg: #ffffff;
         }
 
-        /* ダークモード用の変数 */
+        /* カラー設定（ダークモード） */
         [data-theme="dark"] {
             --main: #4da3ff;
             --accent: #2ecc71;
@@ -41,12 +41,18 @@
             background: var(--main);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
         }
+        .theme-toggle:hover { transform: scale(1.1); }
 
         header { background: var(--header-bg); padding: 40px 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; border-top: 10px solid var(--main); }
         h1 { margin: 0; font-size: 2em; color: var(--main); }
@@ -60,30 +66,26 @@
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: var(--main); }
         .name { font-weight: bold; font-size: 1.1em; color: var(--text); margin-bottom: 8px; }
         .license { font-size: 0.8em; color: var(--text-sub); background: rgba(0,0,0,0.05); padding: 4px 8px; border-radius: 4px; margin-bottom: 15px; }
-        
         [data-theme="dark"] .license { background: rgba(255,255,255,0.1); }
 
-        .link { text-align: center; text-decoration: none; font-size: 0.9em; color: var(--main); border: 1px solid var(--main); padding: 8px; border-radius: 6px; transition: 0.2s; margin-top: auto; font-weight: bold;}
+        .link { text-align: center; text-decoration: none; font-size: 0.9em; color: var(--main); border: 1px solid var(--main); padding: 10px; border-radius: 6px; transition: 0.2s; margin-top: auto; font-weight: bold;}
         .link:hover { background: var(--main); color: #fff; }
 
         footer { text-align: center; margin-top: 100px; padding: 40px; background: var(--header-bg); border-radius: 20px 20px 0 0; color: var(--text-sub); }
 
-        /* スマホ対応 */
         @media (max-width: 768px) {
             body { padding: 10px; }
             header { padding: 25px 15px; margin-bottom: 25px; }
             h1 { font-size: 1.5em; }
-            .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-            .theme-toggle { top: 10px; right: 10px; padding: 8px 12px; font-size: 1rem; }
-        }
-        @media (max-width: 400px) {
-            .grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+            .theme-toggle { width: 45px; height: 45px; top: 15px; right: 15px; font-size: 1.2rem; }
+            .card { padding: 12px; }
         }
     </style>
 </head>
 <body>
 
-<button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">🌙</button>
+<button class="theme-toggle" id="theme-toggle" title="モード切替">🌙</button>
 
 <div class="container">
     <header>
@@ -95,6 +97,17 @@
         当BOTで使用している <strong>VOICEVOX</strong> キャラクターの紹介ページです。<br>
         「詳細を見る」ボタンから、各キャラクターのプロフィールや立ち絵を確認できます。
     </div>
+
+    <section>
+        <h2>11期生</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="name">あんこもん</span>
+                <span class="license">VOICEVOX:あんこもん</span>
+                <a href="https://voicevox.hiroshiba.jp/dormitory/ankomon/" target="_blank" class="link">詳細を見る</a>
+            </div>
+        </div>
+    </section>
 
     <section>
         <h2>10期生</h2>
@@ -197,32 +210,26 @@
 
     <footer>
         <p>Software by <a href="https://voicevox.hiroshiba.jp/" target="_blank">VOICEVOX</a></p>
-        <p>※詳細ページから各キャラクターの利用規約もご確認いただけます。</p>
         <p>&copy; 2025 TomapiBOT. 管理室</p>
     </footer>
 </div>
 
 <script>
-    const toggle = document.getElementById('theme-toggle');
+    const btn = document.getElementById('theme-toggle');
     const root = document.documentElement;
     
-    // 保存されたテーマを読み込み
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    root.setAttribute('data-theme', savedTheme);
-    updateToggleButton(savedTheme);
+    // 保存されたテーマ読み込み
+    const saved = localStorage.getItem('theme') || 'light';
+    root.setAttribute('data-theme', saved);
+    btn.textContent = saved === 'dark' ? '☀️' : '🌙';
 
-    toggle.addEventListener('click', () => {
-        let currentTheme = root.getAttribute('data-theme');
-        let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        root.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme); // ブラウザに保存
-        updateToggleButton(newTheme);
-    });
-
-    function updateToggleButton(theme) {
-        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
+    btn.onclick = () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    };
 </script>
 
 </body>
